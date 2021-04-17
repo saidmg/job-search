@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <link href="assets/style.css" rel="stylesheet">
+  <title>Job Search</title>
+</head>
+
+<body>
+  <div class="form-check form-switch" style="margin:2%">
+    <input id='theme' class="form-check-input float-end" type="checkbox" id="flexSwitchCheckDefault">
+  </div>
+
+  <div class="container">
+
+    <!------- Modal  begins----->
+    <div class="modal fade" id="resumew" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="resumew" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="resumew">Resume</h5>
+            <button id="close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="resume-content" class="nonee">
+              <embed src="./assets/Resume - Said Mghabghab.docx (1).pdf" type="application/pdf" width="100%"
+                height="800px" />
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="close2" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -----------Modal ends------------- -->
+
+    <div class="row justify-content-center" style="margin-top: 20%;">
+      <div class="col-6">
+        <button id="resume" type="button" class="btn btn-lg btn-hvr" data-bs-toggle="modal"
+          data-bs-target="#resumew">Resume</button>
+        <button id="cover-letter" class="btn btn-lg btn-hvr">Cover Letter</button>
+        <button id="applied-jobs" class="btn btn-lg btn-hvr">Applied Jobs</button>
+      </div>
+    </div>
+
+  </div>
+</body>
+<script src="assets/script.js"></script>
+
+</html>
