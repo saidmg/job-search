@@ -12,12 +12,13 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 
-// Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+// // Set static folder
+// app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + 'index.html');
-});
+// app.get('/', (req, res) => {
+//     res.sendFile(__dirname + 'index.html');
+// });
+app.use(express.static('public'));
 
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
