@@ -7,7 +7,7 @@ body{background-color: #e9ecef;}
     height: 150px; 
     border-width: 3px;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 25px;
     box-shadow: -10px 0px 10px 1px   rgba(245, 245, 245, 0.829),
     10px 10px 5px rgba(203, 204, 214, 0.356);margin: 2.5%;
     transition: 1s ease;
@@ -49,7 +49,7 @@ body{background-color: #e9ecef;}
     height: 150px; 
     border-width: 3px;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 26px;
     box-shadow: -10px 0px 10px 1px   rgba(10, 112, 228, 0.829),
     10px 10px 5px rgba(203, 204, 214, 0.356);margin: 2.5%;
     transition: 1s ease;

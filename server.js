@@ -1,15 +1,15 @@
-const path = require('path');
-const http = require('http');
+// const path = require('path');
+// const http = require('http');
 const express = require('express');
+const app = express();
 
 const PORT = process.env.PORT || 8080;
 
-const orm = require( './app/models/orm')
-const app = express();
-const server = http.createServer(app);
+// const orm = require( './app/models/orm')
+// const server = http.createServer(app);
 
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
+// app.use(express.urlencoded({ extended: true }))
+// app.use(express.json())
 
 
 // // Set static folder
@@ -20,5 +20,7 @@ app.use(express.json())
 // });
 app.use(express.static('public'));
 
-
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Listener ==================================================
+app.listen(PORT, function () {
+    console.log(`Serving notes on PORT ${PORT}`)
+});
