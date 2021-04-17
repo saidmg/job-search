@@ -12,6 +12,12 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "express": "^4.17.1"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saidmg/job-search.git"
   }
 }
