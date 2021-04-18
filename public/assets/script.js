@@ -7,7 +7,7 @@ document.getElementById('close2').addEventListener('click', showNotResume)
 document.getElementById('closee').addEventListener('click', showNotResume)
 document.getElementById('closee2').addEventListener('click', showNotResume)
 document.getElementById('closeee').addEventListener('click', showNotResume)
-document.getElementById('closee3').addEventListener('click', showNotResume)
+document.getElementById('close3').addEventListener('click', showNotResume)
 document.getElementById('closeeee').addEventListener('click', showNotResume)
 document.getElementById('closee4').addEventListener('click', showNotResume)
 
