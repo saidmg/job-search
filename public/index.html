@@ -21,7 +21,7 @@
 
   <div class="container">
 
-    <!------- Modal  begins----->
+    <!-------Resume Modal  begins----->
     <div class="modal fade" id="resumew" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="resumew" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
@@ -44,13 +44,95 @@
       </div>
     </div>
     <!-- -----------Modal ends------------- -->
-
+     <!-------Cover Modal  begins----->
+     <div class="modal fade" id="coverLetterw" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="resumew" aria-hidden="true">
+     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="coverLetterw">Cover Letter</h5>
+           <button id="closee" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">        
+           <h6>
+            
+            Dear Recruiting Team
+            
+            With great willingness, I am applying for the __________ position  which was advertised on LinkedIn. I firmly believe that my education, skill-set, intensive training and extensive experience make me a suitable candidate for this vacancy. 
+            
+            I hold a degree in Computer and Communication Engineering from Notre Dame University (NDU), Lebanon.
+            During my undergraduate education, I was a trainee for 2 months at SABIS International School in Lebanon;
+            Throughout my training, I worked in software development. In my final year project, I designed and built a smart
+            irrigation system using a Raspberry Pi 3B.
+            
+            Right after my graduation and before I moved to Canada, I worked for 4 months as a web developer for IGEC
+            Sarl. My work was based on developing using multiple languages, including PHP, MySQL, Python, HTML and CSS. I
+            have demonstrated strong problem-solving skills and the ability to work in a challenging working environment.
+            I am currently a permanent resident, and have recently graduated from the full stack bootcamp at UofT, where i have worked on multiple projects using HTML, CSS, JavaScript, Json, REST API, MySQL, MongoDB, React, GitHub, and much more.
+            
+            It would be a great pleasure having the opportunity of meeting you and I am sure after appraisal of my resume
+            you will see that I am an individual with excellent potential. I look forward to hearing from you in due course.
+            
+            Sincerely,
+            Said Mghabghab
+            
+            </h6>
+         </div>
+         <div class="modal-footer">
+           <button id="closee2" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+         </div>
+       </div>
+     </div>
+   </div>
+   <!-- -----------Modal ends------------- -->
+<!-------jobs Modal  begins----->
+<div class="modal fade" id="addJobs" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+aria-labelledby="resumew" aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="resumew">New Job Application. Good Luck!</h5>
+      <button id="closeee" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+     safsaf
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" data-bs-target="#viewJobs" data-bs-toggle="modal" data-bs-dismiss="modal">View History</button>
+      <button id="close3" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+</div>
+<!-- -----------Modal ends------------- -->
+<!-------jobs Modal  begins----->
+<div class="modal fade" id="viewJobs" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+aria-labelledby="viewJobs" aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="resumew">Job Applications History</h5>
+      <button id="closeeeee" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+     safasgsa
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" data-bs-target="#addJobs" data-bs-toggle="modal" data-bs-dismiss="modal">Add Job</button>
+      <button id="close4" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+</div>
+<!-- -----------Modal ends------------- -->
     <div class="row justify-content-center" style="margin-top: 15%;">
       <div class="col-6">
         <button id="resume" type="button" class="btn btn-lg btn-hvr" data-bs-toggle="modal"
           data-bs-target="#resumew">Resume</button>
-        <button id="cover-letter" class="btn btn-lg btn-hvr">Cover Letter</button>
-        <button id="applied-jobs" class="btn btn-lg btn-hvr">Applied Jobs</button>
+        <button id="cover-letter" type="button" class="btn btn-lg btn-hvr" data-bs-toggle="modal"
+        data-bs-target="#coverLetterw">Cover Letter</button>
+        <button id="applied-jobs" type="button" class="btn btn-lg btn-hvr" data-bs-toggle="modal"
+        data-bs-target="#viewJobs">Applied Jobs</button>
       </div>
     </div>
 
