@@ -2,6 +2,8 @@ document.getElementById('resume').addEventListener('click', hideNotResume)
 document.getElementById('applied-jobs').addEventListener('click', hideNotResume)
 document.getElementById('cover-letter').addEventListener('click', hideNotResume)
 
+document.getElementById('viewHistory').addEventListener('click', updateData)
+
 document.getElementById('close').addEventListener('click', showNotResume)
 document.getElementById('close2').addEventListener('click', showNotResume)
 document.getElementById('closee').addEventListener('click', showNotResume)
@@ -11,9 +13,73 @@ document.getElementById('close3').addEventListener('click', showNotResume)
 document.getElementById('closeeee').addEventListener('click', showNotResume)
 document.getElementById('closee4').addEventListener('click', showNotResume)
 
+
+companyName = document.getElementById('validationDefault01')
+companyLocation = document.getElementById('validationDefault002')
+jobTitle = document.getElementById('validationDefault02')
+jobDate = document.getElementById('validationDefault04')
+jobPost = document.getElementById('validationDefault05')
+assessmentLink = document.getElementById('validationDefault03')
+
 let chosen = ''
 let array = ['resume', 'applied-jobs', 'cover-letter']
-function hideNotResume(event) {
+let jobs =[]
+
+async function submitForm(event){
+
+event.preventDefault();
+const formInputs = {
+    company: companyName.value.trim(),
+    location: companyLocation.value.trim(),
+    title: jobTitle.value.trim(),
+    job_date: jobDate.value.trim(),
+    job_post: jobPost.value.trim(),
+    assessment: assessmentLink.value.trim(),
+}
+
+console.log('[this is form input]', formInputs)
+const fetchOptions = {
+    method: 'post',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formInputs)
+}
+
+let result = await fetch('/submit-job', fetchOptions).then(res => res.json())   
+} 
+
+async function updateData(){
+    let settings = {
+        headers: { 'Content-Type': 'application/json' }
+    }
+    // only attach the body for put/post
+    // if( method === 'post' || method === 'put' ) {
+    //     settings.body = JSON.stringify( data )
+    // }
+    jobs =  await fetch('./job-list',settings).then(res => res.json())   ;
+    console.log('jobs',jobs)
+    jobs.map((element)=>{return console.log('element',element)})
+    document.getElementById('tableHere').innerHTML=
+    jobs.map((element)=> { 
+        // console.log('element',element)
+        return`
+        <tr>
+        <th scope="row">${element.id}</th>
+        <td>${element.company}</td>
+        <td>${element.location}</td>
+        <td>${element.title}</td>
+        <td>${element.job_date}</td>
+        <td>${element.job_post}</td>
+        <td>${element.assessment}</td>
+        <td>${element.job_status}</td>
+        <td>
+        <button><i class="fas fa-pen"></i></button>
+        </td>
+      </tr>`
+ })
+}
+async function hideNotResume(event) {
 
     console.log(event.target.id)
     chosen = event.target.id
@@ -21,8 +87,10 @@ function hideNotResume(event) {
         (selectedOne !== event.target.id) ? document.getElementById(selectedOne).classList.add('display-none') : '';
         (selectedOne !== event.target.id) ? setTimeout(function () { document.getElementById(selectedOne).classList.add('nonee'); }, 500) : ''
     });
-
-
+    if(event.target.id === 'applied-jobs') {
+        updateData()
+        
+}
     document.getElementById(event.target.id).classList.add('transition-up');
     setTimeout(function () { document.getElementById(`${chosen}-content`).classList.remove('nonee'); }, 700);
 

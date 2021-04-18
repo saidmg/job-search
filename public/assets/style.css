@@ -1,5 +1,9 @@
 body{background-color: #e9ecef;}
 
+span{
+  color: red;
+}
+
 .btn-hvr{
     border-color: white;
     border-radius: 20%;

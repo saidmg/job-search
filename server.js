@@ -5,19 +5,30 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 
-// const orm = require( './app/models/orm')
+const orm = require( './app/models/orm')
 // const server = http.createServer(app);
 
-// app.use(express.urlencoded({ extended: true }))
-// app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
 
-// // Set static folder
-// app.use(express.static(path.join(__dirname, 'public')));
 
-// app.get('/', (req, res) => {
-//     res.sendFile(__dirname + 'index.html');
-// });
+
+app.get('/job-list', async (req, res) => {
+    let data= await orm.getData();
+    console.log(data)
+    res.send(data)
+    // res.sendFile(__dirname + 'index.html');
+});
+
+app.post('/submit-job', (req, res)=>{
+    console.log(req)
+    let data = req.body
+    let result = orm.postData(data)
+    console.log(result)
+    res.send({ message:'success' })
+
+})
 app.use(express.static('public'));
 
 // Listener ==================================================
