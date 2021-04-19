@@ -37,7 +37,6 @@ const formInputs = {
     assessment: assessmentLink.value.trim(),
 }
 
-console.log('[this is form input]', formInputs)
 const fetchOptions = {
     method: 'post',
     headers: {
@@ -66,7 +65,6 @@ async function updateData(){
     }
     
     jobs =  await fetch('./job-list',settings).then(res => res.json())   ;
-    console.log('jobs',jobs)
     jobs.map((element)=>{return console.log('element',element)})
     document.getElementById('tableHere').innerHTML=
     jobs.map((element, index)=> { 
@@ -90,7 +88,6 @@ async function updateData(){
 }
 async function hideNotResume(event) {
 
-    console.log(event.target.id)
     chosen = event.target.id
     array.forEach(selectedOne => {
         (selectedOne !== event.target.id) ? document.getElementById(selectedOne).classList.add('display-none') : '';
@@ -163,8 +160,8 @@ document.getElementById('theme').addEventListener('change', function () {
         document.getElementById('viewHistory').classList.add('scanfcode2')
         document.getElementById('jobToggle').classList.remove('scanfcode')
         document.getElementById('jobToggle').classList.add('scanfcode2')
-        document.getElementById('submitToggle').classList.remove('scanfcode')
-        document.getElementById('submitToggle').classList.add('scanfcode2')
+        document.getElementById('submitToggle').classList.remove('submitBtn')
+        document.getElementById('submitToggle').classList.add('submitBtn2')
 
 
     } else {
@@ -185,8 +182,8 @@ document.getElementById('theme').addEventListener('change', function () {
         document.getElementById('viewHistory').classList.remove('scanfcode2')
         document.getElementById('jobToggle').classList.add('scanfcode')
         document.getElementById('jobToggle').classList.remove('scanfcode2')
-        document.getElementById('submitToggle').classList.add('scanfcode')
-        document.getElementById('submitToggle').classList.remove('scanfcode2')
+        document.getElementById('submitToggle').classList.add('submitBtn')
+        document.getElementById('submitToggle').classList.remove('submitBtn2')
     }
 
 })

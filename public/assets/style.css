@@ -3,7 +3,30 @@ body{background-color: #e9ecef;}
 span{
   color: red;
 }
-
+.submitBtn{
+  background-color: #212529;
+  border-width: 2px;
+  border-color: white;
+  color:white ;
+}
+.submitBtn:hover{
+  color: #212529;
+  background-color: white;
+  border-width: 2px;
+  border-color: black;
+}
+.submitBtn2{
+  color: #212529;
+  background-color: white;
+  border-width: 2px;
+  border-color: black;
+}
+.submitBtn2:hover{
+  background-color: #212529;
+  border-width: 2px;
+  border-color: white;
+  color:white ;
+}
 .scanfcode{
   position: relative;
   background-color: #212529;

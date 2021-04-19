@@ -16,17 +16,13 @@ app.use(express.json())
 
 app.get('/job-list', async (req, res) => {
     let data= await orm.getData();
-    console.log(data)
     res.send(data)
-    // res.sendFile(__dirname + 'index.html');
 });
 
 app.post('/submit-job', (req, res)=>{
-    console.log(req)
     let data = req.body
     let result = orm.postData(data)
-    console.log(result)
-    res.send({ message:'success' })
+    res.send({ message:'Submitted successfully' })
 
 })
 
