@@ -33,6 +33,11 @@ span{
 }
 .nonee{display: none;}
 
+.showing{
+  color: green;
+  display:inline
+}
+
 .display-none{
     transform:translate(500px);
   opacity: 0;  
@@ -44,7 +49,10 @@ span{
     background-color: rgb(39, 37, 37);
     color: white;
 }
-
+.dark2{
+  background-color: #212529;
+  color: white;
+}
 .btn2-hvr{
     border-color: rgb(112, 226, 241);
     color: white;

@@ -12,7 +12,7 @@
     integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
   <link href="assets/style.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
 
   <title>Job Search</title>
 </head>
@@ -28,7 +28,7 @@
     <div class="modal fade" id="resumew" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="resumew" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
+        <div id="modalTheme0" class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="resumew">Resume</h5>
             <button id="close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -51,7 +51,7 @@
     <div class="modal fade" id="coverLetterw" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="resumew" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
+        <div id="modalTheme1" class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="coverLetterw">Cover Letter</h5>
             <button id="closee" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -101,13 +101,13 @@
     <div class="modal fade" id="addJobs" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="resumew" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
+        <div id="modalTheme2" class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="resumew">New Job Application. Good Luck!</h5>
             <button id="closeee" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form class="row g-3">
+            <form id="form" class="row g-3">
               <div class="col-md-4">
                 <label for="validationDefault01" class="form-label">Company name <span>*</span></label>
                 <input type="text" class="form-control" id="validationDefault01" required>
@@ -120,12 +120,12 @@
                 <label for="validationDefault02" class="form-label">Job Title <span>*</span></label>
                 <input type="text" class="form-control" id="validationDefault02" required>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <label for="validationDefault04" class="form-label">Application Date <span>*</span></label>
                 <input type="date" class="form-select" id="validationDefault04" required>
                 </select>
               </div>
-              <div class="col-md-8">
+              <div class="col-md-6">
                 <label for="validationDefault05" class="form-label">Job Post Link <span>*</span></label>
                 <input type="text" class="form-control" id="validationDefault05" required>
               </div>
@@ -133,8 +133,9 @@
                 <label for="validationDefault03" class="form-label">Assessment Link</label>
                 <input type="text" class="form-control" id="validationDefault03">
               </div>
-              <div class="col-12">
+              <div class="col">
                 <button onclick="submitForm(event)" class="btn btn-primary" type="submit">Submit</button>
+                <p id='successMessage' class="nonee" style="margin-left: 5%;" >Submited Succesffuly</p>
               </div>
             </form>
           </div>
@@ -151,13 +152,13 @@
     <div class="modal fade" id="viewJobs" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
       aria-labelledby="viewJobs" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
+        <div id="modalTheme3" class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="resumew">Job Applications History</h5>
             <button id="closeeee" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <table class="table table-hover">
+            <table class="table   table-hover">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -169,43 +170,9 @@
                   <th scope="col">Assessment</th>
                   <th scope="col">Status</th>
                   <th scope="col">Edit</th>
-
-
                 </tr>
               </thead>
-              <tbody id='tableHere' >
-                <!-- <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                  <td>@fat</td>
-                  <td>@fat</td>
-                  <td>@fat</td>
-                  <td>@fat</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td colspan="2">Larry the Bird</td>
-                  <td>@twitter</td>
-                  <td>@tfsater</td>
-                  <td>@twitter</td>
-                  <td>@twitter</td>
-                  <td>@twitter</td>
-                  <td>@twitter</td>
-                </tr> -->
+              <tbody id='tableHere'>
               </tbody>
             </table>
           </div>

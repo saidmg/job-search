@@ -26,8 +26,9 @@ let array = ['resume', 'applied-jobs', 'cover-letter']
 let jobs =[]
 
 async function submitForm(event){
-
+document.getElementById('form').reportValidity();
 event.preventDefault();
+if (document.getElementById('form').checkValidity() === true){
 const formInputs = {
     company: companyName.value.trim(),
     location: companyLocation.value.trim(),
@@ -46,8 +47,19 @@ const fetchOptions = {
     body: JSON.stringify(formInputs)
 }
 
-let result = await fetch('/submit-job', fetchOptions).then(res => res.json())   
+let result = await fetch('/submit-job', fetchOptions).then(res => res.json()) 
+document.getElementById('successMessage').classList.remove('nonee') 
+document.getElementById('successMessage').classList.add('showing')  
+setTimeout(function () { document.getElementById('successMessage').classList.remove('showing'); }, 999)
+setTimeout(function () { document.getElementById('successMessage').classList.add('nonee'); }, 1000)
+companyName.value = ''
+companyLocation.value = ''
+jobTitle.value =''
+jobDate.value = ''
+jobPost.value = ''
+assessmentLink.value = ''
 } 
+}
 
 async function updateData(){
     let settings = {
@@ -115,6 +127,11 @@ document.getElementById('theme').addEventListener('change', function () {
     if (this.checked) {
         console.log("Checkbox is checked..");
         document.querySelector('body').classList.add('dark')
+        document.getElementById('modalTheme0').classList.add('dark2')
+        document.getElementById('modalTheme1').classList.add('dark2')
+        document.getElementById('modalTheme2').classList.add('dark2')
+        document.getElementById('modalTheme3').classList.add('dark2')
+        document.querySelector('table').classList.add('table-dark')
         document.getElementById('applied-jobs').classList.remove('btn-hvr')
         document.getElementById('applied-jobs').classList.add('btn2-hvr')
         document.getElementById('resume').classList.remove('btn-hvr')
@@ -132,6 +149,11 @@ document.getElementById('theme').addEventListener('change', function () {
         document.getElementById('resume').classList.add('btn-hvr')
         document.getElementById('cover-letter').classList.remove('btn2-hvr')
         document.getElementById('cover-letter').classList.add('btn-hvr')
+        document.getElementById('modalTheme0').classList.remove('dark2')
+        document.getElementById('modalTheme1').classList.remove('dark2')
+        document.getElementById('modalTheme2').classList.remove('dark2')
+        document.getElementById('modalTheme3').classList.remove('dark2')
+        document.querySelector('table').classList.remove('table-dark')
     }
 
 })
