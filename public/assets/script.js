@@ -13,7 +13,6 @@ document.getElementById('close3').addEventListener('click', showNotResume)
 document.getElementById('closeeee').addEventListener('click', showNotResume)
 document.getElementById('closee4').addEventListener('click', showNotResume)
 
-
 companyName = document.getElementById('validationDefault01')
 companyLocation = document.getElementById('validationDefault002')
 jobTitle = document.getElementById('validationDefault02')
@@ -65,16 +64,12 @@ async function updateData(){
     let settings = {
         headers: { 'Content-Type': 'application/json' }
     }
-    // only attach the body for put/post
-    // if( method === 'post' || method === 'put' ) {
-    //     settings.body = JSON.stringify( data )
-    // }
+    
     jobs =  await fetch('./job-list',settings).then(res => res.json())   ;
     console.log('jobs',jobs)
     jobs.map((element)=>{return console.log('element',element)})
     document.getElementById('tableHere').innerHTML=
     jobs.map((element)=> { 
-        // console.log('element',element)
         return`
         <tr>
         <th scope="row">${element.id}</th>
@@ -86,7 +81,9 @@ async function updateData(){
         <td>${element.assessment}</td>
         <td>${element.job_status}</td>
         <td>
-        <button><i class="fas fa-pen"></i></button>
+        <button id="${element.id}" onclick="editJob(event)" class="btn btn-sm dark2" style="height:25px;width:25px"><i id="${element.id}" class="fas fa-pen"></i></button>
+        <button id="${element.id}" onclick="deleteJob(event)" class="btn btn-sm dark2" style="height:25px;width:25px"><i  id="${element.id}" class="fa fa-trash" aria-hidden="true"></i>
+        </button>
         </td>
       </tr>`
  })
@@ -121,7 +118,31 @@ function showNotResume() {
 
 
 }
+async function editJob(event){
+    let jobId = event.target.id
+    const fetchOptions = {
+        method: 'update',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jobId)
+    }
+    
+    let result = await fetch('/edit-job', fetchOptions).then(res => res.json()) 
+}
 
+async function deleteJob(event){
+    let jobId = event.target.id
+    const fetchOptions = {
+        method: 'delete',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jobId)
+    }
+    
+    let result = await fetch('/delete-job', fetchOptions).then(res => res.json()) 
+}
 
 document.getElementById('theme').addEventListener('change', function () {
     if (this.checked) {

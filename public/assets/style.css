@@ -53,6 +53,11 @@ span{
   background-color: #212529;
   color: white;
 }
+.dark2:hover{
+  color: #212529;
+  background-color: white;
+}
+
 .btn2-hvr{
     border-color: rgb(112, 226, 241);
     color: white;

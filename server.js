@@ -29,6 +29,15 @@ app.post('/submit-job', (req, res)=>{
     res.send({ message:'success' })
 
 })
+
+
+app.delete('/delete-job', (req, res)=>{
+    let jobId = req.body
+    console.log(jobId)
+
+
+})
+
 app.use(express.static('public'));
 
 // Listener ==================================================

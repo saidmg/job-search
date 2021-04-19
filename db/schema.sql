@@ -6,9 +6,10 @@ CREATE TABLE job_application(
   company varchar(40),
   location varchar(20),
   title varchar(30),
-  date Date,
-  job_post varchar(60),
-  assessment varchar(60),
-  status varchar(15),
+  job_date varchar(30),
+  job_post varchar(100),
+  assessment varchar(100),
+  assessment_done boolean,
+  job_status varchar(15),
   PRIMARY KEY (id)
 );
