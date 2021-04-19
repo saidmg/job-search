@@ -3,6 +3,20 @@ body{background-color: #e9ecef;}
 span{
   color: red;
 }
+
+.fail-status{
+  color: red;
+}
+
+.pending-status{
+  color: orange;
+}
+
+.success-status{
+  color: green;
+}
+
+
 .submitBtn{
   background-color: #212529;
   border-width: 2px;

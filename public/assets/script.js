@@ -84,6 +84,26 @@ async function myFunction(event) {
     }
 
     let result = await fetch(`/edit-status/${idJob}`, fetchOptions).then(res => res.json())
+    let statusLocation = document.getElementsByClassName('gettingOption')
+    for(let i = 0 ; i < statusLocation.length; i++){
+    switch(document.getElementsByClassName('gettingOption')[i].value) {
+        case 'Declined':
+            statusLocation[i].classList.add('fail-status')
+            statusLocation[i].classList.remove('success-status')
+            statusLocation[i].classList.remove('pending-status')
+          break;
+        case 'Approved':
+            statusLocation[i].classList.add('success-status')
+            statusLocation[i].classList.remove('fail-status')
+            statusLocation[i].classList.remove('pending-status')
+
+          break;
+        default:
+            statusLocation[i].classList.add('pending-status')
+            statusLocation[i].classList.remove('fail-status')
+            statusLocation[i].classList.remove('success-status')
+        }
+    }
 }
 
 async function updateData() {
@@ -104,11 +124,12 @@ async function updateData() {
         <td>${element.job_date}</td>
         <td>${element.job_post}</td>
         <td>${element.assessment}</td>
-        <td> <select id="${element.id}" onchange="myFunction(event)" class="form-select form-select-sm" aria-label=".form-select example" style="width:90px">
+        <td> <select id="${element.id}" onchange="myFunction(event)" class="form-select form-select-sm gettingOption" 
+        aria-label=".form-select example" style="width:80px">
         <option selected>${element.job_status}</option>
-        <option value="fail">fail</option>
-        <option value="pending">pending</option>
-        <option value="success">success</option>
+        <option value="Declined" style="color:red">Declined</option>
+        <option value="Pending" style="color:orange">Pending</option>
+        <option value="Approved" style="color:green">Approved</option>
         </select>
         </td>
         <td>
@@ -118,8 +139,20 @@ async function updateData() {
         </td>
       </tr>`
         })
-    document.getElementById('resumeww').innerText = 'New Job Application. Good Luck!'
-
+        document.getElementById('resumeww').innerText = 'New Job Application. Good Luck!'
+    let statusLocation = document.getElementsByClassName('gettingOption')
+    for(let i = 0 ; i < statusLocation.length; i++){
+    switch(document.getElementsByClassName('gettingOption')[i].value) {
+        case 'Declined':
+            statusLocation[i].classList.add('fail-status')
+          break;
+        case 'Approved':
+            statusLocation[i].classList.add('success-status')
+          break;
+        default:
+            statusLocation[i].classList.add('pending-status')
+        }
+    }
 }
 async function hideNotResume(event) {
 
@@ -179,8 +212,8 @@ async function deleteJob(event) {
 
     let result = await fetch(`/delete-job/${jobId}`, fetchOptions).then(res => res.json())
     updateData()
-    var myModal2 = new bootstrap.Modal(document.getElementById('viewJobs'))
-    myModal2.toggle()
+    // var myModal2 = new bootstrap.Modal(document.getElementById('viewJobs'))
+    // myModal2.toggle()
 }
 
 document.getElementById('theme').addEventListener('change', function () {
