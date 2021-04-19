@@ -5,7 +5,7 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 
-const orm = require( './app/models/orm')
+const orm = require('./app/models/orm')
 // const server = http.createServer(app);
 
 app.use(express.urlencoded({ extended: true }))
@@ -15,22 +15,35 @@ app.use(express.json())
 
 
 app.get('/job-list', async (req, res) => {
-    let data= await orm.getData();
+    let data = await orm.getData();
     res.send(data)
 });
 
-app.post('/submit-job', (req, res)=>{
+app.post('/submit-job', (req, res) => {
     let data = req.body
     let result = orm.postData(data)
-    res.send({ message:'Submitted successfully' })
+    res.send({ message: 'Submitted successfully' })
 
 })
 
+app.get('/get-info/:id', async (req, res) => {
+    let jobId = req.params.id
+    let result = await orm.getCertainData(jobId)
+    console.log('result', result)
+    res.send(result)
+})
 
-app.delete('/delete-job', (req, res)=>{
-    let jobId = req.body
-    console.log(jobId)
+app.put('/edit-job/:id', (req, res) => {
+    let data = req.body
+    let jobId = req.params.id
+    let result = orm.updateData(data, jobId)
+    res.send({ message: 'Updated Successfully' })
+})
 
+app.delete('/delete-job/:id', (req, res) => {
+    let jobId = req.params.id
+    let result = orm.deleteData(jobId)
+    res.send({ message: 'deleted successfully' })
 
 })
 

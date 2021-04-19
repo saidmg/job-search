@@ -22,55 +22,69 @@ assessmentLink = document.getElementById('validationDefault03')
 
 let chosen = ''
 let array = ['resume', 'applied-jobs', 'cover-letter']
-let jobs =[]
+let jobs = []
+let idToEdit = 0
+async function submitForm(event) {
+    document.getElementById('form').reportValidity();
+    event.preventDefault();
+    if (document.getElementById('form').checkValidity() === true) {
+        const formInputs = {
+            company: companyName.value.trim(),
+            location: companyLocation.value.trim(),
+            title: jobTitle.value.trim(),
+            job_date: jobDate.value.trim(),
+            job_post: jobPost.value.trim(),
+            assessment: assessmentLink.value.trim(),
+        }
+        if (idToEdit !== 0) {
+            const fetchOptions = {
+                method: 'put',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formInputs)
+            }
 
-async function submitForm(event){
-document.getElementById('form').reportValidity();
-event.preventDefault();
-if (document.getElementById('form').checkValidity() === true){
-const formInputs = {
-    company: companyName.value.trim(),
-    location: companyLocation.value.trim(),
-    title: jobTitle.value.trim(),
-    job_date: jobDate.value.trim(),
-    job_post: jobPost.value.trim(),
-    assessment: assessmentLink.value.trim(),
+            let result = await fetch(`/edit-job/${idToEdit}`, fetchOptions).then(res => res.json())
+        } else {
+            const fetchOptions = {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formInputs)
+            }
+
+            let result = await fetch('/submit-job', fetchOptions).then(res => res.json())
+        }
+
+        document.getElementById('successMessage').classList.remove('nonee')
+        document.getElementById('successMessage').classList.add('showing')
+        setTimeout(function () { document.getElementById('successMessage').classList.remove('showing'); }, 999)
+        setTimeout(function () { document.getElementById('successMessage').classList.add('nonee'); }, 1000)
+        companyName.value = ''
+        companyLocation.value = ''
+        jobTitle.value = ''
+        jobDate.value = ''
+        jobPost.value = ''
+        assessmentLink.value = ''
+    }
+    document.getElementById('resumeww').innerText = 'New Job Application. Good Luck!'
+    idToEdit = 0
 }
 
-const fetchOptions = {
-    method: 'post',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(formInputs)
-}
-
-let result = await fetch('/submit-job', fetchOptions).then(res => res.json()) 
-document.getElementById('successMessage').classList.remove('nonee') 
-document.getElementById('successMessage').classList.add('showing')  
-setTimeout(function () { document.getElementById('successMessage').classList.remove('showing'); }, 999)
-setTimeout(function () { document.getElementById('successMessage').classList.add('nonee'); }, 1000)
-companyName.value = ''
-companyLocation.value = ''
-jobTitle.value =''
-jobDate.value = ''
-jobPost.value = ''
-assessmentLink.value = ''
-} 
-}
-
-async function updateData(){
+async function updateData() {
     let settings = {
         headers: { 'Content-Type': 'application/json' }
     }
-    
-    jobs =  await fetch('./job-list',settings).then(res => res.json())   ;
-    jobs.map((element)=>{return console.log('element',element)})
-    document.getElementById('tableHere').innerHTML=
-    jobs.map((element, index)=> { 
-        return`
+
+    jobs = await fetch('./job-list', settings).then(res => res.json());
+    jobs.map((element) => { return console.log('element', element) })
+    document.getElementById('tableHere').innerHTML =
+        jobs.map((element, index) => {
+            return `
         <tr>
-        <th scope="row">${index+1}</th>
+        <th scope="row">${index + 1}</th>
         <td>${element.company}</td>
         <td>${element.location}</td>
         <td>${element.title}</td>
@@ -79,12 +93,12 @@ async function updateData(){
         <td>${element.assessment}</td>
         <td>${element.job_status}</td>
         <td>
-        <button id="${element.id}" onclick="editJob(event)" class="btn btn-sm dark3" style="height:25px;width:25px"><i id="${element.id}" class="fas fa-pen"></i></button>
+        <button id="${element.id}" data-bs-dismiss="modal" onclick="editJob(event)" class="btn btn-sm dark3" style="height:25px;width:25px"><i id="${element.id}" class="fas fa-pen"></i></button>
         <button id="${element.id}" onclick="deleteJob(event)" class="btn btn-sm dark3" style="height:25px;width:25px"><i  id="${element.id}" class="fa fa-trash" aria-hidden="true"></i>
         </button>
         </td>
       </tr>`
- })
+        })
 }
 async function hideNotResume(event) {
 
@@ -93,10 +107,10 @@ async function hideNotResume(event) {
         (selectedOne !== event.target.id) ? document.getElementById(selectedOne).classList.add('display-none') : '';
         (selectedOne !== event.target.id) ? setTimeout(function () { document.getElementById(selectedOne).classList.add('nonee'); }, 500) : ''
     });
-    if(event.target.id === 'applied-jobs') {
+    if (event.target.id === 'applied-jobs') {
         updateData()
-        
-}
+
+    }
     document.getElementById(event.target.id).classList.add('transition-up');
     setTimeout(function () { document.getElementById(`${chosen}-content`).classList.remove('nonee'); }, 700);
 
@@ -115,30 +129,45 @@ function showNotResume() {
 
 
 }
-async function editJob(event){
+async function editJob(event) {
     let jobId = event.target.id
-    const fetchOptions = {
-        method: 'update',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(jobId)
-    }
-    
-    let result = await fetch('/edit-job', fetchOptions).then(res => res.json()) 
+    idToEdit = jobId
+    console.log('IdtoEdit', idToEdit)
+    let data = await fetch(`/get-info/${jobId}`).then(res => res.json())
+    console.log('data', data)
+    // document.querySelector('#addJobs').modal('show')
+    var myModal = new bootstrap.Modal(document.getElementById('addJobs'))
+    // document.getElementById('viewJobs').modal('show');
+    myModal.toggle()
+
+    companyName.value = data[0].company
+    companyLocation.value = data[0].location
+    jobTitle.value = data[0].title
+    jobDate.value = data[0].job_date
+    jobPost.value = data[0].job_post
+    assessmentLink.value = data[0].assessment
+
+    document.getElementById('resumeww').innerText = 'Editing previous Job Application'
+    // let donee = await submitForm()
+    // console.log('it is doneeeee')
+
 }
 
-async function deleteJob(event){
+async function deleteJob(event) {
     let jobId = event.target.id
     const fetchOptions = {
-        method: 'delete',
+        method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(jobId)
     }
-    
-    let result = await fetch('/delete-job', fetchOptions).then(res => res.json()) 
+
+    let result = await fetch(`/delete-job/${jobId}`, fetchOptions).then(res => res.json())
+    console.log('result:', result)
+    updateData()
+    var myModal2 = new bootstrap.Modal(document.getElementById('viewJobs'))
+    // document.getElementById('viewJobs').modal('show');
+    myModal2.toggle()
 }
 
 document.getElementById('theme').addEventListener('change', function () {
