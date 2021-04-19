@@ -69,10 +69,10 @@ async function updateData(){
     console.log('jobs',jobs)
     jobs.map((element)=>{return console.log('element',element)})
     document.getElementById('tableHere').innerHTML=
-    jobs.map((element)=> { 
+    jobs.map((element, index)=> { 
         return`
         <tr>
-        <th scope="row">${element.id}</th>
+        <th scope="row">${index+1}</th>
         <td>${element.company}</td>
         <td>${element.location}</td>
         <td>${element.title}</td>
@@ -81,8 +81,8 @@ async function updateData(){
         <td>${element.assessment}</td>
         <td>${element.job_status}</td>
         <td>
-        <button id="${element.id}" onclick="editJob(event)" class="btn btn-sm dark2" style="height:25px;width:25px"><i id="${element.id}" class="fas fa-pen"></i></button>
-        <button id="${element.id}" onclick="deleteJob(event)" class="btn btn-sm dark2" style="height:25px;width:25px"><i  id="${element.id}" class="fa fa-trash" aria-hidden="true"></i>
+        <button id="${element.id}" onclick="editJob(event)" class="btn btn-sm dark3" style="height:25px;width:25px"><i id="${element.id}" class="fas fa-pen"></i></button>
+        <button id="${element.id}" onclick="deleteJob(event)" class="btn btn-sm dark3" style="height:25px;width:25px"><i  id="${element.id}" class="fa fa-trash" aria-hidden="true"></i>
         </button>
         </td>
       </tr>`
@@ -159,6 +159,12 @@ document.getElementById('theme').addEventListener('change', function () {
         document.getElementById('resume').classList.add('btn2-hvr')
         document.getElementById('cover-letter').classList.remove('btn-hvr')
         document.getElementById('cover-letter').classList.add('btn2-hvr')
+        document.getElementById('viewHistory').classList.remove('scanfcode')
+        document.getElementById('viewHistory').classList.add('scanfcode2')
+        document.getElementById('jobToggle').classList.remove('scanfcode')
+        document.getElementById('jobToggle').classList.add('scanfcode2')
+        document.getElementById('submitToggle').classList.remove('scanfcode')
+        document.getElementById('submitToggle').classList.add('scanfcode2')
 
 
     } else {
@@ -175,6 +181,12 @@ document.getElementById('theme').addEventListener('change', function () {
         document.getElementById('modalTheme2').classList.remove('dark2')
         document.getElementById('modalTheme3').classList.remove('dark2')
         document.querySelector('table').classList.remove('table-dark')
+        document.getElementById('viewHistory').classList.add('scanfcode')
+        document.getElementById('viewHistory').classList.remove('scanfcode2')
+        document.getElementById('jobToggle').classList.add('scanfcode')
+        document.getElementById('jobToggle').classList.remove('scanfcode2')
+        document.getElementById('submitToggle').classList.add('scanfcode')
+        document.getElementById('submitToggle').classList.remove('scanfcode2')
     }
 
 })

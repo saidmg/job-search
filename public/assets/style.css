@@ -4,6 +4,97 @@ span{
   color: red;
 }
 
+.scanfcode{
+  position: relative;
+  background-color: #212529;
+  border-width: 0px;
+  color:white ;
+
+}
+.scanfcode:hover{
+  color: #212529;
+  background-color: white;
+  border-width: 0px;
+}
+.scanfcode:before,
+.scanfcode:after {
+  border-color: #212529;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  border-style: solid;
+  border-width: 0;
+  content:"";
+  height: 24px;
+  position: absolute;
+  width: 24px;
+}
+.scanfcode:before {
+  border-left-width: 2px;
+  border-top-width: 2px;
+  left: -5px;
+  top: -5px;
+}
+
+.scanfcode:after {
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+  bottom: -5px;
+  right: -5px;
+}
+.scanfcode:hover:before,
+.scanfcode:hover:after
+{
+  height:100%;
+  width:100%;
+}
+/* ------------------*/
+
+.scanfcode2{
+  position: relative;
+  background-color: white;
+  border-width: 0px;
+  color:#212529
+
+}
+.scanfcode2:hover{
+  color: white;
+  background-color: #212529;
+  border-width: 0px;
+}
+.scanfcode2:before,
+.scanfcode2:after {
+  border-color: white;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  border-style: solid;
+  border-width: 0;
+  content:"";
+  height: 24px;
+  position: absolute;
+  width: 24px;
+}
+.scanfcode2:before {
+  border-left-width: 2px;
+  border-top-width: 2px;
+  left: -5px;
+  top: -5px;
+}
+
+.scanfcode2:after {
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+  bottom: -5px;
+  right: -5px;
+}
+.scanfcode2:hover:before,
+.scanfcode2:hover:after
+{
+  height:100%;
+  width:100%;
+}
+/* ================= */
+.btn-close{color:white;
+background-color: white;}
 .btn-hvr{
     border-color: white;
     border-radius: 20%;
@@ -53,7 +144,11 @@ span{
   background-color: #212529;
   color: white;
 }
-.dark2:hover{
+.dark3{
+  background-color: #212529;
+  color: white;
+}
+.dark3:hover{
   color: #212529;
   background-color: white;
 }
