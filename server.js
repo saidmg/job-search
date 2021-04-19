@@ -29,7 +29,6 @@ app.post('/submit-job', (req, res) => {
 app.get('/get-info/:id', async (req, res) => {
     let jobId = req.params.id
     let result = await orm.getCertainData(jobId)
-    console.log('result', result)
     res.send(result)
 })
 
@@ -37,6 +36,13 @@ app.put('/edit-job/:id', (req, res) => {
     let data = req.body
     let jobId = req.params.id
     let result = orm.updateData(data, jobId)
+    res.send({ message: 'Updated Successfully' })
+})
+
+app.put('/edit-status/:id', (req, res) => {
+    let jobStatus = req.body
+    let jobId = req.params.id
+    let result = orm.updateStatus(jobStatus.chosenValue, jobId)
     res.send({ message: 'Updated Successfully' })
 })
 

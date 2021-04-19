@@ -72,6 +72,19 @@ async function submitForm(event) {
     document.getElementById('resumeww').innerText = 'New Job Application. Good Luck!'
     idToEdit = 0
 }
+async function myFunction(event) {
+    let chosenValue = event.target.value
+    let idJob = event.target.id
+    const fetchOptions = {
+        method: 'put',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ chosenValue: chosenValue })
+    }
+
+    let result = await fetch(`/edit-status/${idJob}`, fetchOptions).then(res => res.json())
+}
 
 async function updateData() {
     let settings = {
@@ -79,7 +92,7 @@ async function updateData() {
     }
 
     jobs = await fetch('./job-list', settings).then(res => res.json());
-    jobs.map((element) => { return console.log('element', element) })
+    // jobs.map((element) => { return console.log('element', element) })
     document.getElementById('tableHere').innerHTML =
         jobs.map((element, index) => {
             return `
@@ -91,7 +104,13 @@ async function updateData() {
         <td>${element.job_date}</td>
         <td>${element.job_post}</td>
         <td>${element.assessment}</td>
-        <td>${element.job_status}</td>
+        <td> <select id="${element.id}" onchange="myFunction(event)" class="form-select form-select-sm" aria-label=".form-select example" style="width:90px">
+        <option selected>${element.job_status}</option>
+        <option value="fail">fail</option>
+        <option value="pending">pending</option>
+        <option value="success">success</option>
+        </select>
+        </td>
         <td>
         <button id="${element.id}" data-bs-dismiss="modal" onclick="editJob(event)" class="btn btn-sm dark3" style="height:25px;width:25px"><i id="${element.id}" class="fas fa-pen"></i></button>
         <button id="${element.id}" onclick="deleteJob(event)" class="btn btn-sm dark3" style="height:25px;width:25px"><i  id="${element.id}" class="fa fa-trash" aria-hidden="true"></i>
@@ -99,6 +118,8 @@ async function updateData() {
         </td>
       </tr>`
         })
+    document.getElementById('resumeww').innerText = 'New Job Application. Good Luck!'
+
 }
 async function hideNotResume(event) {
 
@@ -132,12 +153,8 @@ function showNotResume() {
 async function editJob(event) {
     let jobId = event.target.id
     idToEdit = jobId
-    console.log('IdtoEdit', idToEdit)
     let data = await fetch(`/get-info/${jobId}`).then(res => res.json())
-    console.log('data', data)
-    // document.querySelector('#addJobs').modal('show')
     var myModal = new bootstrap.Modal(document.getElementById('addJobs'))
-    // document.getElementById('viewJobs').modal('show');
     myModal.toggle()
 
     companyName.value = data[0].company
@@ -148,9 +165,7 @@ async function editJob(event) {
     assessmentLink.value = data[0].assessment
 
     document.getElementById('resumeww').innerText = 'Editing previous Job Application'
-    // let donee = await submitForm()
-    // console.log('it is doneeeee')
-
+ 
 }
 
 async function deleteJob(event) {
@@ -163,10 +178,8 @@ async function deleteJob(event) {
     }
 
     let result = await fetch(`/delete-job/${jobId}`, fetchOptions).then(res => res.json())
-    console.log('result:', result)
     updateData()
     var myModal2 = new bootstrap.Modal(document.getElementById('viewJobs'))
-    // document.getElementById('viewJobs').modal('show');
     myModal2.toggle()
 }
 

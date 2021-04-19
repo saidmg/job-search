@@ -19,6 +19,10 @@ function postData(job) {
 
 }
 
+function updateStatus(jobStatus,id) {
+    let result = db.query(`UPDATE job_application set job_status ='${jobStatus}' WHERE id = ${id} `)
+}
+
 function updateData(data, id) {
     let result = db.query(`UPDATE job_application set company ='${data.company}', location = '${data.location}', 
     title = '${data.title}', job_date = '${data.job_date}', job_post = '${data.job_post}', assessment= '${data.assessment}'
@@ -34,4 +38,5 @@ module.exports = {
     deleteData,
     updateData,
     getCertainData,
+    updateStatus,
 };
