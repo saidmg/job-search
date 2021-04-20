@@ -166,9 +166,9 @@ async function hideNotResume(event) {
 
     }
     document.getElementById(event.target.id).classList.add('transition-up');
-    setTimeout(function () { document.getElementById(`${chosen}-content`).classList.remove('nonee'); }, 700);
+    setTimeout(function () {document.getElementById(`${chosen}-content`)? document.getElementById(`${chosen}-content`).classList.remove('nonee'):''; }, 700);
 
-    (event.target.id === 'cover-letter') ? document.getElementById(coverlet).classList.remove('nonee') : '';
+    // (event.target.id === 'cover-letter') ? document.getElementById(coverlet).classList.remove('nonee') : '';
 
 }
 function showNotResume() {
@@ -179,7 +179,7 @@ function showNotResume() {
 
     })
     document.getElementById(chosen).classList.remove('transition-up')
-    document.getElementById(`${chosen}-content`).classList.add('nonee')
+    document.getElementById(`${chosen}-content`)? document.getElementById(`${chosen}-content`).classList.add('nonee'): ''
 
 
 }
