@@ -138,7 +138,7 @@ async function updateData() {
         </button>
         </td>
       </tr>`
-        })
+        }).reduce(function(prev, curr, index, array){return prev + curr});
         document.getElementById('resumeww').innerText = 'New Job Application. Good Luck!'
     let statusLocation = document.getElementsByClassName('gettingOption')
     for(let i = 0 ; i < statusLocation.length; i++){
@@ -174,9 +174,7 @@ async function hideNotResume(event) {
 function showNotResume() {
     array.forEach(selectedOne => {
         (selectedOne !== chosen) ? document.getElementById(selectedOne).classList.remove('nonee') : '';
-
         (selectedOne !== chosen) ? setTimeout(function () { document.getElementById(selectedOne).classList.remove('display-none'); }, 300) : ''
-
     })
     document.getElementById(chosen).classList.remove('transition-up')
     document.getElementById(`${chosen}-content`)? document.getElementById(`${chosen}-content`).classList.add('nonee'): ''
